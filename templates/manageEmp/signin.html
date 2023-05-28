@@ -1,0 +1,23 @@
+{% extends 'manageEmp/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<main>
+    <div class="form-container">
+      <h2>Login Form</h2>
+      <form action="/signin" method="post">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Login</button>
+        <div class="signup-link">
+          Not a member? <a href="/signup">Register Now</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+
+{% endblock %}

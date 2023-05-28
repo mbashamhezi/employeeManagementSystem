@@ -1,0 +1,29 @@
+{% extends 'manageEmp/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<main>
+    <div class="form-container">
+      <h2>Register Form</h2>
+      <form action="/signup" method="post">
+        {% csrf_token %}
+        <input type="text" name="fname" placeholder="Full Name">
+        <input type="text" name="position" placeholder="Position">
+        <input type="text" name="company" placeholder="Company">
+        <input type="text" name="pnumber" placeholder="Phone Number">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Register</button>
+        <div class="signup-link">
+          Already a member! <a href="/signin">Login now</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+{% endblock %}
+
+
+

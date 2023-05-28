@@ -1,0 +1,69 @@
+{% load static %}
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My test website{% endblock %}</title>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'manageEmp/css/main.css' %}">
+</head>
+<body>
+
+    <!-- Header content goes here -->
+    <div class="container">
+      <header>
+        <h1>EMS</h1>
+        <div class="user-icon">
+          <i class='bx bx-user-circle'></i>
+        </div>
+      </header>
+
+    <!-- Main content goes here -->
+    <main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
+
+      <!-- Footer content goes here -->
+      <footer>
+        <p>&copy; 2023 Employee Management System. All rights reserved.</p>
+      </footer>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

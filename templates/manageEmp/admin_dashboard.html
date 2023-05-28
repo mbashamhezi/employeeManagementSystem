@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        /* CSS styles for layout */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1F4E5F;
+        }
+
+      /*  header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }*/
+        header {
+  grid-area: header;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-icon {
+  font-size: 20px;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  background-color: #f2f2f2;
+     padding: 20px;
+     min-width: 200px;
+     height: 80%;
+        }
+
+.content {
+    flex: 1;
+     padding: 20px;
+}
+
+footer {
+  grid-area: footer;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+/* CSS styles for sidebar links */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  color: #333;
+text-decoration: none;
+}
+
+.sidebar a:hover {
+  color: #666;
+}
+
+/* CSS styles for content sections */
+.content form {
+  display: none;
+}
+
+.content h2 {
+  margin-top: 0;
+}
+
+.form-container {
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.form-container h2{
+  color: #fff;
+}
+
+.form-container input{
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+}
+
+.form-container button {
+  background-color: #FF5E78;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+form .signup-link{
+color: #262626;
+margin-top: 20px;
+text-align: center;
+}
+form .pass-link a,
+form .signup-link a{
+color: #4158d0;
+text-decoration: none;
+}
+
+
+
+    </style>
+</head>
+<body>
+      <header>
+        <h1>EMS</h1>
+        <div class="user-icon">
+          <i class='bx bx-user-circle'></i>
+        </div>
+      </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#" onclick="showForm('signup-form')">Add Employee</a></li>
+                <li><a href="#" onclick="showForm('login-form')">Enventories</a></li>
+                <li><a href="#" onclick="showForm('add-asset-form')">Add Leave</a></li>
+            </ul>
+        </aside>
+
+    <main class="content">
+        <div class="form-container">
+
+        <form id="signup-form" class="signup-form" action="#" method="post">
+        {% csrf_token %}
+        <h2>Add Employee</h2>
+      <input type="text" name="fname" placeholder="Full Name">
+      <input type="text" name="role" placeholder="Role/Position">
+      <input type="text" name="email" placeholder="Phone Number">
+      <input type="text" name="password" placeholder="Temporary Password">
+      <button type="submit" name="add_employee">Add</button>
+        </form>
+
+
+        <form id="login-form" class="login-form" action="#" method="post">
+                <h2>Add Asset</h2>
+        <input type="text" name="asset" placeholder="Asset Name">
+        <button type="submit" name="add_asset">Add</button>
+            </form>
+
+
+
+        <form id="add-asset-form" class="add-asset-form" action="#" method="post">
+              <h2>Add leave</h2>
+        <input type="text" name="days" placeholder="Add Days">
+        <button type="submit" name="add_leave">Update</button>
+        </form>
+
+          </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Employee Management System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showForm(formId) {
+            var forms = document.getElementsByClassName('content')[0].getElementsByTagName('form');
+            for (var i = 0; i < forms.length; i++) {
+                forms[i].style.display = 'none';
+            }
+            document.getElementById(formId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
