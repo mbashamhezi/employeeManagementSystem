@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Asset</title>
+</head>
+<body>
+  <h2>Add Asset</h2>
+  <form id="add-asset-form" class="login-form" action="{% url 'add_asset' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="add_asset">Add</button>
+  </form>
+</body>
+</html>

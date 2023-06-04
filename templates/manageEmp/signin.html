@@ -7,9 +7,14 @@
 <main>
     <div class="form-container">
       <h2>Login Form</h2>
+
+      {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+      {% endif %}
+
       <form action="/signin" method="post">
         {% csrf_token %}
-        <input type="email" name="email" placeholder="Email">
+        <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
         <button type="submit">Login</button>
         <div class="signup-link">

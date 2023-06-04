@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Employee</title>
+</head>
+<body>
+  <h2>Add Employee</h2>
+  <form id="add-employee-form" class="signup-form" action="#" method="post">
+    {% csrf_token %}
+    <!-- {{ form.as_p }} -->
+        <input type="text" name="fname" placeholder="Full Name">
+        <input type="text" name="role" placeholder="Position">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="User Name">
+
+    <button type="submit" name="add_employee">Add</button>
+  </form>
+</body>
+</html>
