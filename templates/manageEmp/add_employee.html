@@ -1,19 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Add Employee</title>
-</head>
-<body>
-  <h2>Add Employee</h2>
-  <form id="add-employee-form" class="signup-form" action="#" method="post">
-    {% csrf_token %}
-    <!-- {{ form.as_p }} -->
-        <input type="text" name="fname" placeholder="Full Name">
-        <input type="text" name="role" placeholder="Position">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="User Name">
+{% extends 'manageEmp/base.html' %}
 
-    <button type="submit" name="add_employee">Add</button>
-  </form>
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<main>
+  <div class="form-container">
+    <h2>Add Employee Informations</h2>
+  <form id="add-employee-form" class="signup-form" action="{% url 'add_employee' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="fname" placeholder="full name" required>
+    <input type="text" name="role" placeholder="role" required>
+    <input type="text" name="email" placeholder="email" required>
+    <input type="text" name="pnumber" placeholder="phone number" required>
+    <input type="text" name="tpass" placeholder="Temporary pass" required>
+    <button type="submit" name="add_employee">Register Employee</button>
+</form>
+</div>
+</main>
 </body>
 </html>
+
+{% endblock %}

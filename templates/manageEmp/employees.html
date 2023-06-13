@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Employee List</title>
+</head>
+<body>
+    <h1>Employee List</h1>
+    <ul>
+        {% for employee in employees %}
+        <li>{{ employee.fname }}  {{ employee.role }} {{ employee.email }} {{ employee.pnumber }}</li>
+        {% empty %}
+        <li>No employees found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

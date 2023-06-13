@@ -139,3 +139,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/manageEmp/')
 
+
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'your-email-host'
+# EMAIL_PORT = 'your-email-port'
+# EMAIL_HOST_USER = 'your-email-username'
+# EMAIL_HOST_PASSWORD = 'your-email-password'
+# EMAIL_USE_TLS = True  # or False if you're using SSL
+# DEFAULT_FROM_EMAIL = 'your-email-address'

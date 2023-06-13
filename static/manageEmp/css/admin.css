@@ -120,3 +120,29 @@ form .signup-link a {
   color: #4158d0;
   text-decoration: none;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.button-container button {
+  margin: 0 5px;
+  padding: 8px 16px;
+  background-color: #FF5E78;
+}
+
+
+

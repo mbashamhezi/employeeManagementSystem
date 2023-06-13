@@ -4,10 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 # from .forms import EmployeeForm, AssetForm, LeaveForm
-# from .models import Employee, Asset, Leave
-from django.db import models
-from .models import Employee
-from .forms import EmployeeForm
+from .models import Employee, Asset 
+ 
 
 def home(request):
     return render(request, "manageEmp/signup.html")
@@ -48,21 +46,8 @@ def signin(request):
             return redirect('signin') 
     
     # Get the error message from the session
-    error_message = request.session.pop('error_message', None)
-    
+    error_message = request.session.pop('error_message', None) 
     return render(request, 'manageEmp/signin.html', {'error_message': error_message})
-
-# def signin(request):
-#     if request.method == 'POST':
-#         email = request.POST['email']
-#         pass1 = request.POST['password']
-#         user = authenticate(request, username=email, password=pass1)
-#         if user is not None:
-#             login(request, User)
-#         return redirect('admin_dashboard')  # Redirect to home page after successful login
-#     else:
-#         messages.error(request, 'Invalid credentials')
-#     return render(request, "manageEmp/signin.html")
 
 def signout(request):
     if request.method == 'POST':
@@ -73,49 +58,48 @@ def signout(request):
 
 def admin_dashboard(request):
     if request.method == 'POST':
-        # Handle adding an employee
+        return redirect('login')
+    elif request.method == 'GET':
+        employees = Employee.objects.all()
+        assets = Asset.objects.all()
+        context = { 
+            'employees': employees,
+            'assets': assets,
+         }
+        return render(request, 'manageEmp/admin_dashboard.html', context)
+     
+# def employee_list(request):
+#     employees = Employee.objects.all()
+#     return render(request, 'manageEmp/employees.html', {'employees': employees})
+
+def add_employee(request):
+    if request.method == 'POST':
         fname = request.POST.get('fname')
         role = request.POST.get('role')
         email = request.POST.get('email')
-        password = request.POST.get('password')
-            
-            # Create a new employee object
-        employee = Employee(fname=fname, role=role, email=email, password=password)
+        pnumber = request.POST.get('pnumber')
+        tpass = request.POST.get('tpass')
+        employee = Employee(fname=fname, role=role, email=email, pnumber=pnumber, tpass=tpass)
         employee.save()
-        return redirect('login')
-    return render(request, 'manageEmp/admin_dashboard.html')
+        return redirect('admin_dashboard')
+    return render(request, 'manageEmp/add_employee.html')
 
 
-    # main content
-def add_employee(request):
+   
+def add_asset(request):
     if request.method == 'POST':
-        form = EmployeeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')  # Replace 'home' with the URL you want to redirect to after saving the data
-    else:
-        form = EmployeeForm()
-    return render(request, 'manageEmp/add_employee.html', {'form': form})
+        id = request.POST.get('id')
+        assetName = request.POST.get('assetName')
+        sno = request.POST.get('sno')
+        model = request.POST.get('model')
+        
+        asset = Asset(id=id, assetName=assetName, sno=sno, model=model )
+        asset.save()
+        return redirect('admin_dashboard')
+    return render(request, 'manageEmp/add_asset.html')
 
-# def add_asset_view(request):
-#     if request.method == 'POST':
-#         form = AssetForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('home')  # Replace 'home' with the URL you want to redirect to after saving the data
-#     else:
-#         form = AssetForm()
-#     return render(request, 'add_asset.html', {'form': form})
 
-# def add_leave_view(request):
-#     if request.method == 'POST':
-#         form = LeaveForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('home')  # Replace 'home' with the URL you want to redirect to after saving the data
-#     else:
-#         form = LeaveForm()
-#     return render(request, 'add_leave.html', {'form': form})
+
 
 
 
