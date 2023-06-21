@@ -1,0 +1,35 @@
+{% extends 'manageEmp/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<main>
+  <div class="form-container">
+
+
+<h2 style="color: white;">Edit Employee Details</h2>
+<form method="post" action="{% url 'edit_employee' employee.id %}">
+  {% csrf_token %}
+  <div>
+    <input type="text" id="fname" name="fname" value="{{ employee.fname }}">
+  </div>
+  <div>
+    <input type="text" id="role" name="role" value="{{ employee.role }}">
+  </div>
+  <div>
+    <input type="email" id="email" name="email" value="{{ employee.email }}">
+  </div>
+  <div>
+    <input type="text" id="pnumber" name="pnumber" value="{{ employee.pnumber }}">
+  </div>
+  <div class="button-container">
+    <button type="submit">Save</button>
+    <a href="{% url 'view_employee' employee.id %}"><button>Cancel</button></a>
+  </div>
+</form>
+
+</div>
+</main>
+
+
+{% endblock %}

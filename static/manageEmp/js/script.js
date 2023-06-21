@@ -1,29 +1,47 @@
-// var navLinks = document.querySelectorAll("nav a");
-// var contentSections = document.querySelectorAll(".content > div");
 
-// navLinks.forEach(function(link) {
-//   link.addEventListener("click", function(e) {
-//     e.preventDefault();
-
-//     var target = this.getAttribute("href").substring(1);
-//     showContentSection(target);
-//   });
-// });
-
-// function showContentSection(target) {
-//   contentSections.forEach(function(section) {
-//     section.style.display = "none";
-//   });
-
-//   var selectedSection = document.getElementById(target);
-//   selectedSection.style.display = "block";
-// }
-
-
-        function showForm(formId) {
-            var forms = document.getElementsByClassName('content')[0].getElementsByTagName('form');
-            for (var i = 0; i < forms.length; i++) {
-                forms[i].style.display = 'none';
+        function showSection(sectionId) {
+            var sections = document
+                .getElementsByClassName("content")[0]
+                .getElementsByTagName("section");
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = "none";
             }
-            document.getElementById(formId).style.display = 'block';
+            document.getElementById(sectionId).style.display = "block";
         }
+    
+
+    $(document).ready(function() {
+        var rowsPerPage = 5;
+        var currentPage = 0;
+        var tableRows = $('.table tbody tr');
+        var totalPages = Math.ceil(tableRows.length / rowsPerPage);
+        
+        showPage(currentPage);
+        
+        $('#prev').click(function(e) {
+            e.preventDefault();
+            if (currentPage > 0) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+        
+        $('#next').click(function(e) {
+            e.preventDefault();
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+        
+        function showPage(page) {
+            tableRows.hide();
+            var startIndex = page * rowsPerPage;
+            var endIndex = startIndex + rowsPerPage;
+            tableRows.slice(startIndex, endIndex).show();
+            
+            $('.pagination a').removeClass('active');
+            $('.pagination a').eq(page + 1).addClass('active');
+        }
+    });
+

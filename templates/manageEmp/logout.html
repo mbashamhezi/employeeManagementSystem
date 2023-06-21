@@ -1,0 +1,5 @@
+<div class="user-icon">
+    <i class="bx bx-user-circle"></i>
+    <span class="username">{{ request.user.username }}</span>
+    <a href="{% url 'logout' %}"><span style="color: red;">Logout</span></a>
+</div>

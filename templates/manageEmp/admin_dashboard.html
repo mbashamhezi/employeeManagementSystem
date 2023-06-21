@@ -11,7 +11,19 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'manageEmp/css/admin.css' %}">
 
-     
+    <script src="{% static 'manageEmp/js/script.js' %}"></script>
+    
+    <style>
+      .icon {
+  font-size: 20px;
+  color: blue;
+  margin-right: 5px; /* Adjust as needed */
+}
+
+.icon:hover {
+  color: #ff0000; /* Change color on hover */
+}
+    </style>
 </head>
 <body>
     <header>
@@ -19,6 +31,7 @@
         <div class="user-icon">
             <i class="bx bx-user-circle"></i>
             <span class="username">{{ request.user.username }}</span>
+            <a href="{% url 'logout' %}" style="color: red;">Logout</a>
         </div>
     </header>
 
@@ -34,13 +47,16 @@
         <main class="content">
           <section id="add-employee" class="content" style="display: none;">
 
-            <button><a href="{% url 'add_employee' %}">Add Employee</a></button>
+            <div class="button-container">
+            <a href="{% url 'add_employee' %}"><button>Add Employee</button></a>
+            </div>
 
             <div style="height: 300px; overflow: auto;">
 
             <table>
               <thead>
                 <tr>
+                  <th>Employee ID</th>
                   <th>Full Name</th>
                   <th>Role</th>
                   <th>Email</th>
@@ -52,6 +68,7 @@
               <tbody>
                 {% for employee in employees %}
                 <tr>
+                  <td>{{ employee.id }}</td>
                   <td>{{ employee.fname }}</td>
                   <td>{{ employee.role }}</td>
                   <td>{{ employee.email }}</td>
@@ -59,9 +76,9 @@
 
                   <td>
                     <div class="button-container">
-                      <button>Edit</button>
-                      <button>View</button>
-                      <button>Delete</button>
+                      <a href="{% url 'edit_employee' employee.id %}"><i class='bx bxs-edit-alt icon'></i></a>
+                      <a href="{% url 'view_employee' employee.id %}"><i class='bx bxs-user-detail icon'></i></a>
+                      <a href="{% url 'delete_employee' employee.id %}"><i class='bx bx-trash icon'></i></a>
                     </div>
                   </td>
                 </tr>
@@ -73,11 +90,9 @@
               </tbody>
             </table>
           </div>
-
          
         </section>
                                 
-
                 </section>
 
                 <section id="add-asset" class="content" style="display: none;">
@@ -107,9 +122,9 @@
             
                               <td>
                                 <div class="button-container">
-                                  <button>Edit</button>
-                                  <button>View</button>
-                                  <button>Delete</button>
+                                  <i class='bx bxs-edit-alt icon'></i>
+                                  <i class='bx bxs-user-detail icon'></i>
+                                  <i class='bx bx-trash icon'></i>
                                 </div>
                               </td>
                             </tr>
@@ -135,58 +150,7 @@
 
     <footer>
         <p>&copy; 2023 Employee Management System. All rights reserved.</p>
-    </footer>
-
-    <script>
-        function showSection(sectionId) {
-            var sections = document
-                .getElementsByClassName("content")[0]
-                .getElementsByTagName("section");
-            for (var i = 0; i < sections.length; i++) {
-                sections[i].style.display = "none";
-            }
-            document.getElementById(sectionId).style.display = "block";
-        }
-    
-    </script>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        var rowsPerPage = 5;
-        var currentPage = 0;
-        var tableRows = $('.table tbody tr');
-        var totalPages = Math.ceil(tableRows.length / rowsPerPage);
-        
-        showPage(currentPage);
-        
-        $('#prev').click(function(e) {
-            e.preventDefault();
-            if (currentPage > 0) {
-                currentPage--;
-                showPage(currentPage);
-            }
-        });
-        
-        $('#next').click(function(e) {
-            e.preventDefault();
-            if (currentPage < totalPages - 1) {
-                currentPage++;
-                showPage(currentPage);
-            }
-        });
-        
-        function showPage(page) {
-            tableRows.hide();
-            var startIndex = page * rowsPerPage;
-            var endIndex = startIndex + rowsPerPage;
-            tableRows.slice(startIndex, endIndex).show();
-            
-            $('.pagination a').removeClass('active');
-            $('.pagination a').eq(page + 1).addClass('active');
-        }
-    });
-</script>
+    </footer>   
 
 </body>
 
