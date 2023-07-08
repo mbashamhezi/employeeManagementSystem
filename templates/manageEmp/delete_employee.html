@@ -12,8 +12,8 @@
   <form method="post" action="{% url 'delete_employee' employee.id %}">
     {% csrf_token %}
     <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Remove</button>
-    <a href="{% url 'view_employee' employee.id %}"><button>Cancel</button></a>
   </form>
+  <a href="{% url 'admin_dashboard'%}"><button>Cancel</button></a>
 
   <script>
     function confirmDelete() {
