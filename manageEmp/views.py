@@ -122,7 +122,7 @@ from .models import Asset
 
 def add_asset(request):
     if request.method == 'POST':
-       
+        id_number = request.POST['id']
         asset_name = request.POST['assetName']
         serial_number = request.POST['sno']
         model = request.POST['model']
@@ -133,7 +133,7 @@ def add_asset(request):
         employee = Employee.objects.get(id=employee_id)
 
         # Create a new Asset object and save it to the database
-        asset = Asset(employee_id=employee_id, asset_name=asset_name, serial_number=serial_number, model=model, employee=employee)
+        asset = Asset(id_number=id_number, asset_name=asset_name, serial_number=serial_number, model=model, employee=employee)
         asset.save()
 
         return redirect('success')  # Redirect to a success page or any other desired URL

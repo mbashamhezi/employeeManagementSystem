@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -26,36 +25,35 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>EMS</h1>
-        <div class="user-icon">
-            <i class="bx bx-user-circle"></i>
-            <span class="username">{{ request.user.username }}</span>
-            <a href="{% url 'logout' %}" style="color: red;">Logout</a>
-        </div>
-    </header>
+  <header>
+    <h1>EMS</h1>
+    <div class="user-icon">
+      <i class="bx bx-user-circle"></i>
+        <span class="username">{{ request.user.username }}</span>
+        <a href="{% url 'logout' %}" style="color: red;">Logout</a>
+    </div>
+  </header>
 
     <div class="container">
-        <aside class="sidebar">
-            <ul>
-                <li><a href="#" onclick="showSection('add-employee')">Add Employee</a></li>
-                <li><a href="#" onclick="showSection('add-asset')">Enventories</a></li>
-                <li><a href="#" onclick="showSection('add-leave')">Add Leave</a></li>
-            </ul>
-        </aside>
+      <aside class="sidebar">
+        <ul>
+          <li><a href="#" onclick="showSection('add-employee')">Add Employee</a></li>
+          <li><a href="#" onclick="showSection('add-asset')">Enventories</a></li>
+          <li><a href="#" onclick="showSection('add-leave')">Add Leave</a></li>
+          </ul>
+      </aside>
 
-        <main class="content">
-          <section id="add-employee" class="content" style="display: none;">
-
-            <div class="button-container">
+      <main class="content">
+        <section id="add-employee" class="content" style="display: none;">
+          <div class="button-container">
             <a href="{% url 'add_employee' %}"><button>Add Employee</button></a>
-            </div>
+          </div>
 
             <div style="height: 300px; overflow: auto;">
 
             <table>
               <thead>
-                <tr>
+                <tr style="color: #cf2d2d;">
                   <th>Employee ID</th>
                   <th>Full Name</th>
                   <th>Role</th>
@@ -114,20 +112,21 @@
                           
                           <tbody >
                             {% for asset in assets %}
-                            <tr>
+                            <tr style="background-color: #cf2d2d; padding: 10px;">
                               <td>{{ asset.id }}</td>
                               <td>{{ asset.assetName }}</td>
                               <td>{{ asset.sno }}</td>
                               <td>{{ asset.model }}</td>
             
-                              <td>
+                              <td style="background-color: #cf2d2d; padding: 10px;">
                                 <div class="button-container">
                                   <i class='bx bxs-edit-alt icon'></i>
                                   <i class='bx bxs-user-detail icon'></i>
                                   <i class='bx bx-trash icon'></i>
                                 </div>
-                              </td>
+                              </td> 
                             </tr>
+                            
                             {% empty %}
                             <tr>
                             <td colspan="5">No asset found.</td>

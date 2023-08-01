@@ -1,9 +1,7 @@
 from django import forms
-# from .models import Employee, Asset, Leave
-from .models import Employee
 
-class EmployeeForm(forms.ModelForm):
-    class Meta:
-        model = Employee
-        fields = ('fname', 'role', 'email', 'password')
-
+class AssetAssignmentForm(forms.Form):
+    employee_id = forms.IntegerField()
+    asset_name = forms.CharField(max_length=100)
+    asset_serial_number = forms.CharField(max_length=50)
+    asset_model = forms.CharField(max_length=50)

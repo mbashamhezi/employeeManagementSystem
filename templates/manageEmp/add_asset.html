@@ -8,15 +8,14 @@
     <h2>Add Asset Informations</h2>
   <form id="add-asset-form" class="signup-form" action="{% url 'add_asset' %}" method="post">
     {% csrf_token %}
-    <input type="text" name="employee_id" placeholder="employee_id" required>
-    <select name="asset_name" id="">
+    <input type="text" name="id" placeholder="id_number" required>
+    <select name="assetName" id="">
         <option value="laptop">laptop</option>
         <option value="car">car</option>
         <option value="phone">Phone</option>
     </select>
-     <input type="text" name="serial_number" placeholder="serial-No " required>
-    <input type="text" name="model" placeholder="model" required>
-     
+     <input type="text" name="sno" placeholder="serial-No " required>
+    <input type="text" name="model" placeholder="model" required> 
     <button type="submit" name="add_asset">Register Asset</button>
 </form>
 </div>

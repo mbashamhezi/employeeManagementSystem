@@ -1,4 +1,4 @@
-
+// ==================JS for side bar =======================
         function showSection(sectionId) {
             var sections = document
                 .getElementsByClassName("content")[0]
@@ -9,6 +9,9 @@
             document.getElementById(sectionId).style.display = "block";
         }
     
+// ======================End side bar ======================
+
+
 
     $(document).ready(function() {
         var rowsPerPage = 5;
