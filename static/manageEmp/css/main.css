@@ -39,12 +39,12 @@ main {
   padding: 20px;
 }
 
-footer {
+/* footer {
   grid-area: footer;
   color: #fff;
   padding: 20px;
   text-align: center;
-}
+} */
 
 .form-container {
   text-align: center;
@@ -81,4 +81,22 @@ form .pass-link a,
 form .signup-link a{
 color: #4158d0;
 text-decoration: none;
+}
+
+
+.container footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  text-align: center;
+  padding: 10px;
+  background-color: white;
+  color: var(--text-color);
+}
+
+footer p {
+  text-align: center;
+  margin: 0 auto;
 }

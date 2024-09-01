@@ -87,7 +87,7 @@ def edit_employee(request, employee_id):
         employee.email = request.POST.get('email')
         employee.pnumber = request.POST.get('pnumber')
         employee.save()
-        return redirect('admin_dashboard')  # Replace 'employee_list' with the appropriate URL name for the employee list view
+        return redirect('admin_dashboard') 
     return render(request, 'manageEmp/edit_employee.html', {'employee': employee})
 
 
@@ -100,45 +100,28 @@ def delete_employee(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
     if request.method == 'POST':
         employee.delete()
-        return redirect('admin_dashboard')  # Replace 'employee_list' with the appropriate URL name for the employee list view
+        return redirect('admin_dashboard') 
     return render(request, 'manageEmp/delete_employee.html', {'employee': employee})
 
 
-   
-# def add_asset(request):
-#     if request.method == 'POST':
-#         employee_id = request.POST.get('employee_id')
-#         assetName = request.POST.get('assetName')
-#         sno = request.POST.get('sno')
-#         model = request.POST.get('model')
-        
-#         asset = Asset(employee_id=employee_id, assetName=assetName, sno=sno, model=model )
-#         asset.save()
-#         return redirect('admin_dashboard')
-#     return render(request, 'manageEmp/add_asset.html')
-
-from django.shortcuts import render, redirect
-from .models import Asset
-
 def add_asset(request):
     if request.method == 'POST':
-        id_number = request.POST['id']
-        asset_name = request.POST['assetName']
-        serial_number = request.POST['sno']
+        asset_name = request.POST['asset_name']
+        serial_number = request.POST['serial_number']
         model = request.POST['model']
-        
-        # Assuming you have a foreign key field named 'employee' in your Asset model
-        # Retrieve the employee object based on the employee ID
-        employee_id = 45  # Replace with the actual employee ID from your form or session
-        employee = Employee.objects.get(id=employee_id)
-
-        # Create a new Asset object and save it to the database
-        asset = Asset(id_number=id_number, asset_name=asset_name, serial_number=serial_number, model=model, employee=employee)
+        asset = Asset(asset_name=asset_name, serial_number=serial_number, model=model)
         asset.save()
+        return redirect('admin_dashboard')
+    return render(request, 'manageEmp/add_asset.html')
 
-        return redirect('success')  # Redirect to a success page or any other desired URL
-    
-    return render(request, 'manageEmp/add_asset.html')  # Replace 'add_asset.html' with the path to your template
+
+def view_and_delete_asset(request, asset_id):
+    asset = get_object_or_404(Asset, id=asset_id)
+    if request.method == 'POST' and 'delete' in request.POST:
+        asset.delete()
+        return redirect('admin_dashboard') 
+    return render(request, 'manageEmp/view_and_delete_asset.html', {'asset': asset})
+
 
 
 

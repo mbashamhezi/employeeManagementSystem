@@ -10,9 +10,9 @@ class Employee(models.Model):
     tpass = models.CharField(max_length=100)
 
 class Asset(models.Model):
-    id = models.AutoField(primary_key=True)
-    assetName = models.CharField(max_length=100)
-    sno = models.CharField(max_length=100)
+    id = models.AutoField(primary_key=True, db_column='asset_id')
+    asset_name = models.CharField(max_length=100)
+    serial_number = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
     
 

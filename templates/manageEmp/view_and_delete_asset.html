@@ -1,0 +1,31 @@
+{% extends 'manageEmp/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<main>
+    <div class="form-container">
+        <h1>Asset Details</h1>
+        <table>
+            <tr>
+                <th>Asset Name</th>
+                <td>{{ asset.asset_name }}</td>
+            </tr>
+            <tr>
+                <th>Serial Number</th>
+                <td>{{ asset.serial_number }}</td> 
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ asset.model }}</td>
+            </tr>
+        </table>
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" name="delete" value="Delete Asset">
+        </form>
+
+        <a href="{% url 'admin_dashboard' %}">Back to Asset List</a>
+    </div>
+</main>
+{% endblock %}

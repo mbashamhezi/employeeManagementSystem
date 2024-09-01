@@ -3,25 +3,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Website</title>
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{% static 'manageEmp/css/admin.css' %}">
-
-    <script src="{% static 'manageEmp/js/script.js' %}"></script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Website</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'manageEmp/css/admin.css' %}">
+  <script src="{% static 'manageEmp/js/script.js' %}"></script>
     
     <style>
       .icon {
-  font-size: 20px;
-  color: blue;
-  margin-right: 5px; /* Adjust as needed */
-}
+      font-size: 20px;
+      color: blue;
+      margin-right: 5px;
+      }
 
-.icon:hover {
-  color: #ff0000; /* Change color on hover */
-}
+      .icon:hover {
+      color: #ff0000;
+      }
     </style>
 </head>
 <body>
@@ -29,128 +28,117 @@
     <h1>EMS</h1>
     <div class="user-icon">
       <i class="bx bx-user-circle"></i>
-        <span class="username">{{ request.user.username }}</span>
-        <a href="{% url 'logout' %}" style="color: red;">Logout</a>
+      <span class="username">{{ request.user.username }}</span>
+      <a href="{% url 'logout' %}" style="color: red;">Logout</a>
     </div>
   </header>
 
-    <div class="container">
-      <aside class="sidebar">
-        <ul>
-          <li><a href="#" onclick="showSection('add-employee')">Add Employee</a></li>
-          <li><a href="#" onclick="showSection('add-asset')">Enventories</a></li>
-          <li><a href="#" onclick="showSection('add-leave')">Add Leave</a></li>
-          </ul>
-      </aside>
+  <div class="container">
+    <aside class="sidebar">
+      <ul>
+        <li><a href="#" onclick="showSection('add-employee')">Add Employee</a></li>
+        <li><a href="#" onclick="showSection('add-asset')">Enventories</a></li>
+        <li><a href="#" onclick="showSection('add-leave')">Add Leave</a></li>
+      </ul>
+    </aside>
 
-      <main class="content">
-        <section id="add-employee" class="content" style="display: none;">
-          <div class="button-container">
-            <a href="{% url 'add_employee' %}"><button>Add Employee</button></a>
-          </div>
+    <main class="content">
 
-            <div style="height: 300px; overflow: auto;">
-
-            <table>
-              <thead>
-                <tr style="color: #cf2d2d;">
-                  <th>Employee ID</th>
-                  <th>Full Name</th>
-                  <th>Role</th>
-                  <th>Email</th>
-                  <th>Phone Number</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              
-              <tbody>
-                {% for employee in employees %}
-                <tr>
-                  <td>{{ employee.id }}</td>
-                  <td>{{ employee.fname }}</td>
-                  <td>{{ employee.role }}</td>
-                  <td>{{ employee.email }}</td>
-                  <td>{{ employee.pnumber }}</td>
-
-                  <td>
-                    <div class="button-container">
-                      <a href="{% url 'edit_employee' employee.id %}"><i class='bx bxs-edit-alt icon'></i></a>
-                      <a href="{% url 'view_employee' employee.id %}"><i class='bx bxs-user-detail icon'></i></a>
-                      <a href="{% url 'delete_employee' employee.id %}"><i class='bx bx-trash icon'></i></a>
-                    </div>
-                  </td>
-                </tr>
-                {% empty %}
-                <tr>
+      <!-- Add Employee Section -->
+      <section id="add-employee" class="content" style="display: none;">
+        <div class="button-container">
+          <a href="{% url 'add_employee' %}"><button>Add Employee</button></a>
+        </div>
+        <div style="height: 300px; overflow: auto;">
+          <table>
+            <thead>
+              <tr style="color: #cf2d2d;">
+                <th>Employee ID</th>
+                <th>Full Name</th>
+                <th>Role</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for employee in employees %}
+              <tr>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.fname }}</td>
+                <td>{{ employee.role }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.pnumber }}</td>
+                <td>
+                  <div class="button-container">
+                    <a href="{% url 'edit_employee' employee.id %}"><i class='bx bxs-edit-alt icon'></i></a>
+                    <a href="{% url 'view_employee' employee.id %}"><i class='bx bxs-user-detail icon'></i></a>
+                    <a href="{% url 'delete_employee' employee.id %}"><i class='bx bx-trash icon'></i></a>
+                  </div>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
                 <td colspan="5">No employees found.</td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-         
-        </section>
-                                
-                </section>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-                <section id="add-asset" class="content" style="display: none;">
-                    <button><a href="{% url 'add_asset' %}">Add Asset</a></button>
+       <!-- Add Asset Section-->
+      <section id="add-asset" class="content" style="display: none;">
+        <div class="button-container">
+          <a href="{% url 'add_asset' %}"><button>Add Asset</button></a>
+        </div>
+        <div style="height: 300px; overflow: auto;">
+          <table>
+            <thead style="position: sticky; top: 0;">
+              <tr>
+                <th>Asset ID</th>
+                <th>Asset Name</th>
+                <th>Serial No;</th>
+                <th>Model</th>
+                <th>Actions</th>              
+              </tr>
+            </thead>          
+            <tbody >
+              {% for asset in assets %}
+              <tr style="background-color: #F39F5A;">
+                <td class="table-data">{{ asset.id }}</td>
+                <td class="table-data">{{ asset.asset_name }}</td>
+                <td class="table-data">{{ asset.serial_number }}</td>
+                <td class="table-data">{{ asset.model }}</td>
+                <td class="table-data">
+                  <div class="button-container">
+                    <a href="{% url 'view_and_delete_asset' asset.id %}">View</a>
+                  </div>
+                </td> 
+              </tr>          
+              {% empty %}
+              <tr>
+                <td colspan="5">No asset found.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-                    <div style="height: 300px; overflow: auto;">
+      <!-- Add Leave Section -->
+      <section id="add-leave" class="content" style="display: none;">
+        <div class="button-container">
+          <a href="{% url 'add_employee' %}"><button>Add Leave</button></a>
+        </div>
+      </section>
 
-                        <table>
-                          <thead style="position: sticky; top: 0;">
-                            <tr>
-                              <th>Id</th>
-                              <th>Asset Name</th>
-                              <th>Serial No;</th>
-                              <th>Model</th>
-                              <th>Actions</th>
-                               
-                            </tr>
-                          </thead>
-                          
-                          <tbody >
-                            {% for asset in assets %}
-                            <tr style="background-color: #cf2d2d; padding: 10px;">
-                              <td>{{ asset.id }}</td>
-                              <td>{{ asset.assetName }}</td>
-                              <td>{{ asset.sno }}</td>
-                              <td>{{ asset.model }}</td>
-            
-                              <td style="background-color: #cf2d2d; padding: 10px;">
-                                <div class="button-container">
-                                  <i class='bx bxs-edit-alt icon'></i>
-                                  <i class='bx bxs-user-detail icon'></i>
-                                  <i class='bx bx-trash icon'></i>
-                                </div>
-                              </td> 
-                            </tr>
-                            
-                            {% empty %}
-                            <tr>
-                            <td colspan="5">No asset found.</td>
-                            </tr>
-                            {% endfor %}
-                          </tbody>
-                        </table>
-                      </div>
+    </main>
+  </div>
 
-                </section>
-
-                <section id="add-leave" class="content" style="display: none;">
-                    <button><a href="{% url 'add_employee' %}">Add Leave</a></button>
-
-                </section>
-
-            </div>
-        </main>
-    </div>
-
-    <footer>
-        <p>&copy; 2023 Employee Management System. All rights reserved.</p>
-    </footer>   
+  <footer>
+    <p>&copy; 2023 Employee Management System. All rights reserved.</p>
+  </footer>   
 
 </body>
-
 </html>
